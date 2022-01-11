@@ -327,10 +327,11 @@ class Captcha
         $bag = [];
 
         if ($this->math) {
-            $x = random_int(10, 30);
-            $y = random_int(1, 9);
-            $bag = "$x + $y = ";
-            $key = $x + $y;
+            $rand = rand(0, 1);
+            $x = random_int(11, 89);
+            $y = $rand ? 10 - ($x % 10) : $x % 10;
+            $bag = $rand ? "$x + $y = " : "$x - $y = ";
+            $key = $rand ? $x + $y : $x - $y;
             $key .= '';
         } else {
             for ($i = 0; $i < $this->length; $i++) {
